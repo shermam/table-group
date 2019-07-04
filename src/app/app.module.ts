@@ -10,9 +10,15 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TableComponent } from "./table/table.component";
 import { TreeComponent } from "./tree/tree.component";
+import { FlatTreeComponent } from "./flat-tree/flat-tree.component";
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, TreeComponent],
+  declarations: [
+    AppComponent,
+    TableComponent,
+    TreeComponent,
+    FlatTreeComponent
+  ],
   imports: [
     MatButtonModule,
     MatTableModule,

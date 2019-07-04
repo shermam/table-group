@@ -1,0 +1,9 @@
+.animate-height.example-tree-invisible {
+  max-height: 0;
+}
+
+.animate-height {
+  max-height: 80vh;
+  transition: max-height 0.2s;
+  overflow: auto;
+}

@@ -1,4 +1,25 @@
 <h1 (click)="showTable = !showTable">Material Table with Grouping</h1>
+<div>
+  <button mat-raised-button color="primary" (click)="view = 'table'">
+    Table
+  </button>
+  <button mat-raised-button color="primary" (click)="view = 'tree'">
+    Tree
+  </button>
+  <button mat-raised-button color="primary" (click)="view = 'flat-tree'">
+    Flat Tree
+  </button>
+</div>
 
-<app-table [columns]="columns" [data$]="data$" *ngIf="showTable"></app-table>
-<app-tree *ngIf="!showTable" [data]="dataTree$ | async"></app-tree>
+<ng-container [ngSwitch]="view">
+  <app-table
+    [columns]="columns"
+    [data$]="data$"
+    *ngSwitchCase="'table'"
+  ></app-table>
+  <app-tree [data]="dataTree$ | async" *ngSwitchCase="'tree'"></app-tree>
+  <app-flat-tree
+    [data]="dataTree$ | async"
+    *ngSwitchCase="'flat-tree'"
+  ></app-flat-tree>
+</ng-container>
