@@ -1,3 +1,4 @@
-<h1>Material Table with Grouping</h1>
+<h1 (click)="showTable = !showTable">Material Table with Grouping</h1>
 
-<app-table [columns]="columns" [data$]="data$"></app-table>
+<app-table [columns]="columns" [data$]="data$" *ngIf="showTable"></app-table>
+<app-tree *ngIf="!showTable" [data]="dataTree$ | async"></app-tree>

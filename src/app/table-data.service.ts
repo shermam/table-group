@@ -15,6 +15,6 @@ export class TableDataService {
   constructor(private http: HttpClient) {}
 
   get() {
-    return this.http.get<TableData>("./assets/sample.json");
+    return this.http.get<TableData[]>("./assets/sample.json");
   }
 }
