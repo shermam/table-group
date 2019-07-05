@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 export interface TableData {
   vin: string;
   brand: string;
-  year: number;
+  year: string;
   color: string;
 }
 

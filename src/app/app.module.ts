@@ -8,12 +8,15 @@ import { MatButtonModule } from "@angular/material/button";
 import { AgGridModule } from "ag-grid-angular";
 import "ag-grid-enterprise";
 
+import { jqxGridModule } from "jqwidgets-ng/jqxgrid";
+
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TableComponent } from "./table/table.component";
 import { TreeComponent } from "./tree/tree.component";
 import { FlatTreeComponent } from "./flat-tree/flat-tree.component";
 import { AgGridComponent } from "./ag-grid/ag-grid.component";
+import { JqwidgetsGridComponent } from "./jqwidgets-grid/jqwidgets-grid.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { AgGridComponent } from "./ag-grid/ag-grid.component";
     TableComponent,
     TreeComponent,
     FlatTreeComponent,
-    AgGridComponent
+    AgGridComponent,
+    JqwidgetsGridComponent
   ],
   imports: [
     MatButtonModule,
@@ -31,7 +35,8 @@ import { AgGridComponent } from "./ag-grid/ag-grid.component";
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    jqxGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
