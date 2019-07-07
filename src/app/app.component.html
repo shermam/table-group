@@ -3,6 +3,9 @@
   <button mat-raised-button color="primary" (click)="view = 'table'">
     Table
   </button>
+  <button mat-raised-button color="primary" (click)="view = 'table-group'">
+    Table Group
+  </button>
   <button mat-raised-button color="primary" (click)="view = 'tree'">
     Tree
   </button>
@@ -23,6 +26,11 @@
     [data$]="data$"
     *ngSwitchCase="'table'"
   ></app-table>
+  <app-table-group
+    [tableColumns]="columns"
+    [data$]="data$"
+    *ngSwitchCase="'table-group'"
+  ></app-table-group>
   <app-tree [data]="dataTree$ | async" *ngSwitchCase="'tree'"></app-tree>
   <app-flat-tree
     [data]="dataTree$ | async"

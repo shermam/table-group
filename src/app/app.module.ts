@@ -5,6 +5,8 @@ import { MatTableModule } from "@angular/material/table";
 import { MatTreeModule } from "@angular/material/tree";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+import { MatMenuModule } from "@angular/material/menu";
+
 import { AgGridModule } from "ag-grid-angular";
 import "ag-grid-enterprise";
 
@@ -17,6 +19,7 @@ import { TreeComponent } from "./tree/tree.component";
 import { FlatTreeComponent } from "./flat-tree/flat-tree.component";
 import { AgGridComponent } from "./ag-grid/ag-grid.component";
 import { JqwidgetsGridComponent } from "./jqwidgets-grid/jqwidgets-grid.component";
+import { TableGroupComponent } from "./table-group/table-group.component";
 
 @NgModule({
   declarations: [
@@ -25,9 +28,11 @@ import { JqwidgetsGridComponent } from "./jqwidgets-grid/jqwidgets-grid.componen
     TreeComponent,
     FlatTreeComponent,
     AgGridComponent,
-    JqwidgetsGridComponent
+    JqwidgetsGridComponent,
+    TableGroupComponent
   ],
   imports: [
+    MatMenuModule,
     MatButtonModule,
     MatTableModule,
     MatTreeModule,
