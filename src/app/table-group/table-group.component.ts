@@ -17,27 +17,23 @@ export class Group {
   styleUrls: ["./table-group.component.scss"]
 })
 export class TableGroupComponent implements OnInit {
-  @Input() tableColumns = [];
+  @Input() columns: string[] = [];
   @Input() data$;
 
   _alldata: any[];
-  columns: any[];
-  displayedColumns: string[];
   groupByColumns: string[] = ["brand", "color"];
+
+  get displayedColumns(): string[] {
+    return this.columns.filter(c => !this.groupByColumns.includes(c));
+  }
 
   public dataSource = new MatTableDataSource<any | Group>([]);
 
   constructor() {}
 
   ngOnInit() {
-    this.columns = this.tableColumns.map(c => ({ field: c }));
-    this.displayedColumns = this.tableColumns.map(c => c);
-
     this.data$.subscribe(
       (data: any) => {
-        // data.forEach((item, index) => {
-        //   item.id = index + 1;
-        // });
         this._alldata = data;
         this.dataSource.data = this.addGroups(
           this._alldata,
@@ -52,7 +48,7 @@ export class TableGroupComponent implements OnInit {
 
   groupBy(event, column) {
     event.stopPropagation();
-    this.checkGroupByColumn(column.field, true);
+    this.checkGroupByColumn(column, true);
     this.dataSource.data = this.addGroups(this._alldata, this.groupByColumns);
     this.dataSource.filter = performance.now().toString();
   }
@@ -77,7 +73,7 @@ export class TableGroupComponent implements OnInit {
 
   unGroupBy(event, column) {
     event.stopPropagation();
-    this.checkGroupByColumn(column.field, false);
+    this.checkGroupByColumn(column, false);
     this.dataSource.data = this.addGroups(this._alldata, this.groupByColumns);
     this.dataSource.filter = performance.now().toString();
   }
