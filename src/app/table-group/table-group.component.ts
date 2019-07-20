@@ -21,7 +21,7 @@ export class TableGroupComponent implements OnInit {
   @Input() data$;
 
   _alldata: any[];
-  groupByColumns: string[] = ["brand", "color"];
+  groupByColumns: string[] = [];
 
   get displayedColumns(): string[] {
     return this.columns.filter(c => !this.groupByColumns.includes(c));
@@ -46,8 +46,20 @@ export class TableGroupComponent implements OnInit {
     );
   }
 
-  groupBy(event, column) {
-    event.stopPropagation();
+  drop(event) {
+    const column: string = event.dataTransfer.getData("column");
+    this.groupBy(column);
+  }
+
+  allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  drag(ev, col) {
+    ev.dataTransfer.setData("column", col);
+  }
+
+  groupBy(column) {
     this.checkGroupByColumn(column, true);
     this.dataSource.data = this.addGroups(this._alldata, this.groupByColumns);
     this.dataSource.filter = performance.now().toString();
@@ -71,8 +83,7 @@ export class TableGroupComponent implements OnInit {
     }
   }
 
-  unGroupBy(event, column) {
-    event.stopPropagation();
+  unGroupBy(column) {
     this.checkGroupByColumn(column, false);
     this.dataSource.data = this.addGroups(this._alldata, this.groupByColumns);
     this.dataSource.filter = performance.now().toString();
