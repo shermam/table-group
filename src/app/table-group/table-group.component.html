@@ -1,4 +1,5 @@
 <div class="drop-zone" (drop)="drop($event)" (dragover)="allowDrop($event)">
+  <p *ngIf="!groupByColumns.length">Drag and drop a column here to group</p>
   <mat-chip-list aria-label="Groupped columns">
     <mat-chip
       *ngFor="let col of groupByColumns"
