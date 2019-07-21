@@ -19,12 +19,16 @@ export class Group {
 export class TableGroupComponent implements OnInit {
   @Input() columns: string[] = [];
   @Input() data$;
+  @Input() indentationSize: number = 20;
 
   _alldata: any[];
   groupByColumns: string[] = [];
 
   get displayedColumns(): string[] {
-    return this.columns.filter(c => !this.groupByColumns.includes(c));
+    return [
+      "indentation",
+      ...this.columns.filter(c => !this.groupByColumns.includes(c))
+    ];
   }
 
   public dataSource = new MatTableDataSource<any | Group>([]);
@@ -44,6 +48,10 @@ export class TableGroupComponent implements OnInit {
       },
       (err: any) => console.log(err)
     );
+  }
+
+  getIndentation() {
+    return this.indentationSize * this.groupByColumns.length + 1 + "px";
   }
 
   drop(event) {
