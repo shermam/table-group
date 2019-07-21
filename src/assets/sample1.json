@@ -1,0 +1,92 @@
+[
+  {
+    "Class": "Maintenance",
+    "Group": "1",
+    "Reason": "1",
+    "Location": "Perawang|Pulp",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "Sub Equipment Name",
+    "Duration": 60
+  },
+  {
+    "Class": "Maintenance",
+    "Group": "1",
+    "Reason": "2",
+    "Location": "Division 2 > Area 1",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "",
+    "Duration": 60
+  },
+  {
+    "Class": "Maintenance",
+    "Group": "2",
+    "Reason": "2",
+    "Location": "Perawang|Pulp",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "",
+    "Duration": 60
+  },
+  {
+    "Class": "Maintenance",
+    "Group": "2",
+    "Reason": "2",
+    "Location": "Division 2 > Area 1",
+    "Period": "DD/MM/YYYY 00:00 - DD/MM/YYYY 00:00",
+    "Sub Equipment": "Sub Equipment Name",
+    "Duration": 60
+  },
+  {
+    "Class": "Maintenance",
+    "Group": "2",
+    "Reason": "2",
+    "Location": "Division 2 > Area 1 > Equipment 3",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "",
+    "Duration": 60
+  },
+  {
+    "Class": "Decomposition",
+    "Group": "1",
+    "Reason": "1",
+    "Location": "Perawang|Pulp",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "Sub Equipment Name",
+    "Duration": 60
+  },
+  {
+    "Class": "Decomposition",
+    "Group": "1",
+    "Reason": "2",
+    "Location": "Division 2 > Area 1",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "",
+    "Duration": 60
+  },
+  {
+    "Class": "Decomposition",
+    "Group": "2",
+    "Reason": "2",
+    "Location": "Perawang|Pulp",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "",
+    "Duration": 60
+  },
+  {
+    "Class": "Decomposition",
+    "Group": "2",
+    "Reason": "2",
+    "Location": "Division 2 > Area 1",
+    "Period": "DD/MM/YYYY 00:00 - DD/MM/YYYY 00:00",
+    "Sub Equipment": "Sub Equipment Name",
+    "Duration": 60
+  },
+  {
+    "Class": "Decomposition",
+    "Group": "2",
+    "Reason": "2",
+    "Location": "Division 2 > Area 1 > Equipment 3",
+    "Period": "DD/MM/YYYY 00:00 - 00:00",
+    "Sub Equipment": "",
+    "Duration": 60
+  }
+]

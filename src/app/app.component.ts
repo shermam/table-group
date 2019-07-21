@@ -10,7 +10,16 @@ import { ItemNode } from "./tree/tree.component";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  columns: Array<string> = ["vin", "brand", "year", "color"];
+  view = "table-group";
+  columns: Array<string> = [
+    "Class",
+    "Group",
+    "Reason",
+    "Location",
+    "Period",
+    "Sub Equipment",
+    "Duration"
+  ];
   data$: Observable<TableData[]> = this.dataService.get();
   dataTree$: Observable<ItemNode[]> = this.data$.pipe(
     map(convertDataToTree(["brand", "color"]))

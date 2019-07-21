@@ -4,7 +4,7 @@ import { MatTableDataSource } from "@angular/material/table";
 export class Group {
   level = 0;
   parent: Group;
-  expanded = false;
+  expanded = true;
   totalCounts = 0;
   get visible(): boolean {
     return !this.parent || (this.parent.visible && this.parent.expanded);
@@ -20,6 +20,7 @@ export class TableGroupComponent implements OnInit {
   @Input() columns: string[] = [];
   @Input() data$;
   @Input() indentationSize: number = 20;
+  @Input() allExpanded: boolean = true;
 
   _alldata: any[];
   groupByColumns: string[] = [];
