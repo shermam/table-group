@@ -28,7 +28,8 @@
   ></app-table>
   <app-table-group
     [columns]="columns"
-    [data$]="data$"
+    [data]="data$ | async"
+    [groupByColumns]="['Class', 'Group', 'Reason']"
     *ngSwitchCase="'table-group'"
   ></app-table-group>
   <app-tree [data]="dataTree$ | async" *ngSwitchCase="'tree'"></app-tree>

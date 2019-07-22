@@ -12,18 +12,7 @@
   </mat-chip-list>
 </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="indentation">
-    <th
-      mat-header-cell
-      *matHeaderCellDef
-      [ngStyle]="{ width: getIndentation() }"
-    ></th>
-    <td mat-cell *matCellDef [ngStyle]="{ width: getIndentation() }"></td>
-  </ng-container>
-  <ng-container
-    *ngFor="let column of columns; let i = index"
-    matColumnDef="{{ column }}"
-  >
+  <ng-container *ngFor="let column of columns" matColumnDef="{{ column }}">
     <th
       mat-header-cell
       *matHeaderCellDef
@@ -44,18 +33,16 @@
       mat-cell
       colspan="999"
       *matCellDef="let group"
-      [ngStyle]="{ 'padding-left': group.level * indentationSize + 'px' }"
+      [ngStyle]="{ 'padding-left': group.$$level * indentationSize + 'px' }"
     >
       <button mat-icon-button (click)="groupHeaderClick(group)">
         <mat-icon>
-          {{ group.expanded ? "expand_more" : "chevron_right" }}
+          {{ group.$$expanded ? "expand_more" : "chevron_right" }}
         </mat-icon>
       </button>
       <strong
-        >{{ groupByColumns[group.level - 1] }}:
-        {{ group[groupByColumns[group.level - 1]] }} ({{
-          group.totalCounts
-        }})</strong
+        >{{ groupByColumns[group.$$level] }}:
+        {{ group[groupByColumns[group.$$level]] }} ({{ group.$$count }})</strong
       >
     </td>
   </ng-container>
