@@ -23,7 +23,17 @@ export class TableGroupComponent {
   }
 
   get displayedColumns(): string[] {
-    return this.columns.filter(c => !this.groupByColumns.includes(c));
+    return [
+      "groupHeaderColumn",
+      ...this.columns.filter(c => !this.groupByColumns.includes(c))
+    ];
+  }
+
+  get groupColumns(): string[] {
+    return [
+      "groupHeader",
+      ...this.columns.filter(c => !this.groupByColumns.includes(c))
+    ];
   }
 
   drop(event) {
@@ -75,6 +85,14 @@ export class TableGroupComponent {
 
   isGroup(index, item): boolean {
     return item.$$isGroup;
+  }
+
+  getBackgroundGroup(level: number) {
+    const min = 220;
+    const max = 255;
+    const step = (max - min) / this.groupByColumns.length;
+    const color = Math.floor(min + step * level);
+    return `rgb(${color},${color},${color})`;
   }
 }
 

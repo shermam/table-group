@@ -12,6 +12,10 @@
   </mat-chip-list>
 </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="groupHeaderColumn">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef></td>
+  </ng-container>
   <ng-container *ngFor="let column of columns" matColumnDef="{{ column }}">
     <th
       mat-header-cell
@@ -31,7 +35,6 @@
   <ng-container matColumnDef="groupHeader">
     <td
       mat-cell
-      colspan="999"
       *matCellDef="let group"
       [ngStyle]="{ 'padding-left': group.$$level * indentationSize + 'px' }"
     >
@@ -46,9 +49,12 @@
       >
     </td>
   </ng-container>
+  <!-- <ng-container *ngFor="let column of columns" matColumnDef="{{ column }}">
+  </ng-container> -->
 
   <tr
     mat-row
-    *matRowDef="let row; columns: ['groupHeader']; when: isGroup"
+    *matRowDef="let row; columns: groupColumns; when: isGroup"
+    [ngStyle]="{ background: getBackgroundGroup(row.$$level) }"
   ></tr>
 </table>
