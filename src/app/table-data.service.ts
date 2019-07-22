@@ -2,10 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 export interface TableData {
-  vin: string;
-  brand: string;
-  year: string;
-  color: string;
+  Class: string;
+  Group: string;
+  Reason: string;
+  Location: string;
+  Period: string;
+  "Sub Equipment": string;
+  Duration: number;
+  "Total Time": number;
 }
 
 @Injectable({

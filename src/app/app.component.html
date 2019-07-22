@@ -1,4 +1,4 @@
-<h1 (click)="showTable = !showTable">Material Table with Grouping</h1>
+<!-- <h1 (click)="showTable = !showTable">Material Table with Grouping</h1>
 <div>
   <button mat-raised-button color="primary" (click)="view = 'table'">
     Table
@@ -18,7 +18,7 @@
   <button mat-raised-button color="primary" (click)="view = 'jqwidgets-grid'">
     JQWidgets Grid
   </button>
-</div>
+</div> -->
 
 <ng-container [ngSwitch]="view">
   <app-table
@@ -30,6 +30,10 @@
     [columns]="columns"
     [data]="data$ | async"
     [groupByColumns]="['Class', 'Group', 'Reason']"
+    [agragations]="[
+      { operation: 'sum', property: 'Duration' },
+      { operation: 'sum', property: 'Total Time' }
+    ]"
     *ngSwitchCase="'table-group'"
   ></app-table-group>
   <app-tree [data]="dataTree$ | async" *ngSwitchCase="'tree'"></app-tree>

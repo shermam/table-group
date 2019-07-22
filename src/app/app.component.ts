@@ -18,9 +18,18 @@ export class AppComponent {
     "Location",
     "Period",
     "Sub Equipment",
-    "Duration"
+    "Duration",
+    "Total Time"
   ];
-  data$: Observable<TableData[]> = this.dataService.get();
+  data$: Observable<TableData[]> = this.dataService.get().pipe(
+    map(a => {
+      const totalDuration = a.reduce((p, c) => p + c.Duration, 0);
+      return a.map(d => {
+        d["Total Time"] = (d.Duration / totalDuration) * 100;
+        return d;
+      });
+    })
+  );
   dataTree$: Observable<ItemNode[]> = this.data$.pipe(
     map(convertDataToTree(["brand", "color"]))
   );

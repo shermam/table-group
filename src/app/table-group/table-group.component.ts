@@ -1,5 +1,10 @@
 import { Component, Input } from "@angular/core";
 
+export interface agregation {
+  operation: string;
+  property: string;
+}
+
 @Component({
   selector: "app-table-group",
   templateUrl: "./table-group.component.html",
@@ -7,6 +12,7 @@ import { Component, Input } from "@angular/core";
 })
 export class TableGroupComponent {
   @Input() columns: string[] = [];
+  @Input() agragations: agregation[] = [];
   @Input() indentationSize: number = 20;
   @Input() allExpanded: boolean = true;
   @Input() groupByColumns: string[] = [];
@@ -62,7 +68,9 @@ export class TableGroupComponent {
   updateGroup() {
     this._grouppedData = convertToGrouppedData(
       this.groupByColumns,
-      this._alldata
+      this._alldata,
+      this.allExpanded,
+      this.agragations
     );
     this.dataSource = this._grouppedData.filter(d => d.$$visible);
   }
@@ -99,7 +107,8 @@ export class TableGroupComponent {
 const convertToGrouppedData = (
   groupBy: string[] = [],
   tableData: any[],
-  allExpanded = true
+  allExpanded = true,
+  agragations: agregation[] = []
 ): any[] => {
   if (!groupBy.length) return tableData;
 
@@ -112,9 +121,17 @@ const convertToGrouppedData = (
       tempGroup = tempGroup[data[group]];
     }
     tempGroup._values = tempGroup._values || [];
-    tempGroup._count = tempGroup._count || 0;
-    tempGroup._count++;
+    tempGroup.$$count = tempGroup.$$count || 0;
+    tempGroup.$$count++;
     tempGroup._values.push(data);
+    for (const agregation of agragations) {
+      switch (agregation.operation) {
+        case "sum":
+          tempGroup[agregation.property] =
+            (tempGroup[agregation.property] || 0) + data[agregation.property];
+          break;
+      }
+    }
   }
 
   const grouppedData = [];
@@ -127,10 +144,18 @@ const convertToGrouppedData = (
           return v;
         })
       );
-      return group._count;
+      return group;
     }
 
-    let count = 0;
+    const agregation = { $$count: 0 };
+    for (const a of agragations) {
+      switch (a.operation) {
+        case "sum":
+          agregation[a.property] = 0;
+          break;
+      }
+    }
+
     for (const prop in group) {
       const groupRow: any = {};
       grouppedData.push(groupRow);
@@ -139,11 +164,14 @@ const convertToGrouppedData = (
       groupRow.$$level = level;
       groupRow.$$expanded = allExpanded;
       groupRow.$$visible = allExpanded || level === 0;
-      groupRow.$$count = recursion(group[prop], level + 1);
-      count += groupRow.$$count;
+      const _agregation = recursion(group[prop], level + 1);
+      for (const prop in agregation) {
+        groupRow[prop] = _agregation[prop];
+        agregation[prop] += _agregation[prop];
+      }
     }
 
-    return count;
+    return agregation;
   };
 
   recursion(groups);
